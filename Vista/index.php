@@ -9,8 +9,8 @@
 <body class="container text-center">
 
   <h1>Ejercicio Perceptron</h1>
-  <br>
-  <a class="btn btn-success" href="2Entradas.php">2 Entradas</a>
-
+  </br>
+  <a class="btn btn-success m-2" href="2Entradas.php">2 Entradas</a></br>
+  <a class="btn btn-success m-2" href="4Entradas.php">4 Entradas</a>
 </body>
-</html>
+</html> 

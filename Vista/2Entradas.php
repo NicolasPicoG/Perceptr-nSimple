@@ -15,6 +15,7 @@ $respuesta = '';
 
 $perceptor = new PerceptorSimple($w1, $w2, $e, $tetha);
 
+echo '<script type="text/javascript">alert("Los valores iniciales son W1: ' . $perceptor->w1 . ' W2: ' . $perceptor->w2 . ' Tetha: ' . $perceptor->tetha . ' e: ' . $perceptor->e . '");</script>';
 
 if (isset($_POST['BtnAprender'])) {
 
@@ -44,16 +45,28 @@ if (isset($_POST['BtnCalcular'])) {
 
     $and = $perceptor->andc;
 
-
-
     //if ($and[$i][0] == $_POST['x1'] and  $and[$i][1] == $_POST['x2']) {
 
-
     $respuesta = $y = tanh($w1 * $_POST['x1'] + $w2 * $_POST['x2'] - ($tetha));
+
+    if ($respuesta >= 0) {
+
+        $display = "";
+        $display2 = "display:none;";
+        echo 'La respuesta es 1';
+
+    } else {
+        $display2 = "";
+        $display = "display:none;";
+        echo 'La respuesta es -1';
+
+    } 
 
 
     $i++;
 }
+
+
 
 ?>
 

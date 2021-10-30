@@ -43,35 +43,34 @@ class Database{
     }
 
     public function executeQuery($query, $params = null){
-        // Is there a DB connection?
+        // Existe una conexión de base de datos?
         $this->makeConnection();
-        // Adjust query with params if available
+        // Ajustar la consulta con parámetros si está disponible
         if($params != null){
-            // Change ? to values from parameter array
+            // Cambio ? a los valores de la matriz de parámetros
             $queryParts = preg_split("/\?/", $query);
-            // if amount of ? is not equal to amount of values => error
+            // si cantidad de? no es igual a la cantidad de valores => error
             if(count($queryParts) != count($params) + 1){
                 return false;
             }
-            // Add first part
+            // Agregar la primera parte
             $finalQuery = $queryParts[0];
-            // Loop over all parameters
+            // Bucle sobre todos los parámetros
             for($i = 0; $i < count($params); $i++){
-                // Add clean parameter to query
+                // Agregar parámetro limpio a la consulta
                /* echo $params[$i];*/
                 $finalQuery = $finalQuery . $this->cleanParameters($params[$i]) . $queryParts[$i + 1];
             }
             $query = $finalQuery;
             echo $finalQuery;
         }
-        // Check for SQL injection
-
+        // Compruebe la inyección de SQL
         $result = $this->connection->query($query);
         return $result;
     }
     
     protected function cleanParameters($parameters){
-        // prevent SQL injection
+        // prevenir la inyección de SQL
         $result = $this->connection->real_escape_string($parameters);
         return $result;
     }
